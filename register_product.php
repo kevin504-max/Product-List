@@ -8,6 +8,10 @@
     <title>Register a new product</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/new_product.css">
+    <script src="import/jquery-3.6.4.min.js"></script>
+    <script src="import/toastr.min.js"></script>
+    <link rel="stylesheet" href="import/toastr.min.css">
+
 </head>
 <body>
     <?php
@@ -16,9 +20,78 @@
     <div class="new-product-container">
         <h1>Add Product</h1>
         <p>Register your product</p>   
+        <form id="formRegisterProduct" action="/" class="form">
+            <div class="form-control">
+                <label for="sku">SKU</label>
+                <input type="text" name="sku" id="sku" placeholder="Enter with the product name">
+            </div>
+            <div class="form-control">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="Enter with the product name">
+            </div>
+            <div class="form-control">
+                <label for="price">Price ($)</label>
+                <input type="number" name="price" id="price" placeholder="Enter with the product price">
+            </div>
+            <div class="form-control">
+                <label for="type">Type Switcher</label>
+                <select name="type" id="type">
+                    <option>Select an option</option>
+                    <option value="DVD">DVD</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Book">Book</option>
+                </select>
+            </div>
+            <div id="dvd-details" class="form-control product-details" style="display: none;">
+                <label for="size">Size (MB)</label>
+                <input type="number" name="size" id="size" placeholder="Enter with the size">
+            </div>
+            <div id="furniture-details" class="form-control product-details" style="display: none;">
+                <label for="height">Height (CM)</label>
+                <input type="number" name="height" id="height" placeholder="Enter with the height">
+                <label for="width">Width (CM)</label>
+                <input type="number" name="width" id="width" placeholder="Enter with the width">
+                <label for="length">Length (CM)</label>
+                <input type="number" name="length" id="length" placeholder="Enter with the length">
+            </div>
+            <div id="book-details" class="form-control product-details" style="display: none;">
+                <label for="weight">Weight (KG)</label>
+                <input type="number" name="weight" id="weight" placeholder="Enter with the weight">
+            </div>
+            <div class="actions">
+                <a href="home.php" type="button" class="btn-cancel">Cancel</a>
+                <button class="btn-submit" type="submit">Add Product</button>
+            </div>
+        </form>
     </div>
     <?php
         include_once "footer.php";
     ?>
+    <script>
+        $(document).ready(function () {
+            $("#type").on("change", function (event) {
+                $(".product-details").css("display", "none");
+                $("#" + event.target.value.toLowerCase() + "-details").css("display", "");
+                $("#" + event.target.value.toLowerCase() + "-details").append("<p>*Product description*</p>");
+
+            });
+
+            $("#formRegisterProduct").on("submit", function () {
+                event.preventDefault();
+                $(".form-control input, .form-control select").each(function () {
+                    validation($(this));
+                });
+            });
+        });
+
+        function validation(field) {
+            if(field.val() == "") {
+                toastr.warning(field.attr("name").charAt(0).toUpperCase() + field.attr("name").slice(1) + " is required!");
+                field.css("border", "1px solid red");
+            } else {
+                field.css("border", "1px solid #222");
+            }
+        }
+    </script>
 </body>
 </html>

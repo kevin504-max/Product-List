@@ -11,3 +11,64 @@
 .new-product-container p {
     color: #7B7B7B;
 }
+
+.form {
+    width: 100%;
+    margin: 2em 0;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.form-control label {
+    margin-bottom: 0.6em;
+    font-weight: bold;
+}
+
+.form-control input,
+.form-control select {
+    padding: 0.7em;
+    border: none;
+    border-radius: 0;
+}
+
+.form-control input::placeholder {
+    color: #7B7B7B;
+}
+
+.form-control p {
+    color: #7B7B7B;
+    font-size: 0.8em;
+    margin-top: 0.5em;
+}
+
+.btn-submit {
+    background-color: #222;
+    color: #FFF;
+    padding: 0.7em 1.2em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: 0.5 ease;
+}
+
+.btn-submit:hover {
+    color: #FFBB33;
+}
+
+.btn-cancel {
+    background-color: #FFF;
+    color: #222;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: 0.5 ease;
+}
+
+.btn-cancel:hover {
+    color: #FFBB33;
+}
