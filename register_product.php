@@ -5,21 +5,17 @@
     <link rel="icon" href="favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
+    <title>Register a new product</title>
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/new_product.css">
 </head>
 <body>
     <?php
         include_once "header.php";
     ?>
-    <div class="products-container">
-        <div class="title-container">
-            <h1>Product List</h1>
-            <div class="actions">
-                <a href="register_product.php" type="button" class="btn">Register a new Product</a>
-                <a href="delete_product.php" type="button" class="btn">Mass Delete</a>
-            </div>
-        </div>
+    <div class="new-product-container">
+        <h1>Add Product</h1>
+        <p>Register your product</p>   
     </div>
     <?php
         include_once "footer.php";

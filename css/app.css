@@ -10,7 +10,7 @@ html, body, #root {
     height: 100%;
 }
 
-.projects-container {
+.products-container {
     padding: 2em;
     margin-top: 2em;
 }
@@ -38,13 +38,6 @@ html, body, #root {
 
 .btn:hover {
     color: #FFC107;
-}
-
-.footer {
-    background: #222;
-    color:#FFF;
-    padding: 3em;
-    text-align: center;
 }
 
 .social-list {
