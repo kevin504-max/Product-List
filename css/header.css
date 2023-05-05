@@ -1,0 +1,18 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #222;
+    padding: 1em;
+}
+
+.welcome {
+    color: #FFF;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+
+.welcome span {
+    color: #FFC107;
+}
+
