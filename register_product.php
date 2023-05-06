@@ -20,7 +20,7 @@
     <div class="new-product-container">
         <h1>Add Product</h1>
         <p>Register your product</p>   
-        <form id="formRegisterProduct" class="form" action="add_product.php" method="POST">
+        <form id="formRegisterProduct" class="form" action="methods/add_product.php" method="POST">
             <div class="form-control">
                 <label for="sku">SKU</label>
                 <input type="text" name="sku" id="sku" placeholder="Enter with the product name">

@@ -134,9 +134,9 @@ try {
             $product->getProductDetails($_POST)
         );
     
-        header("Location: home.php");
+        header("Location: ../home.php");
     } else {
-        header("Location: register_product.php");
+        header("Location: ../register_product.php");
     }
 
     

@@ -21,11 +21,11 @@
                 <a id="btn_delete" type="button" class="btn">Mass Delete</a>
             </div>
         </div>
-        <form id="formDeleteProducts" action="delete_products.php" method="POST">
+        <form id="formDeleteProducts" action="methods/delete_products.php" method="POST">
             <input type="hidden" name="products_ids[]" id="products_ids">
             <div class="container" style="justify-content: flex-start;">
                 <?php
-                    include_once "products.php";
+                    include_once "methods/products.php";
                     $productsObj = new App\Products();
                     $products = $productsObj->getProducts();
 
