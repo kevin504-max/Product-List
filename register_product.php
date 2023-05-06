@@ -71,6 +71,7 @@
         $(document).ready(function () {
             $("#type").on("change", function (event) {
                 $(".product-details").css("display", "none");
+                $(".product-details").find("input").val("");
                 $(".product-details").find("p").remove();
                 $("#" + event.target.value.toLowerCase() + "-details").css("display", "");
                 $("#" + event.target.value.toLowerCase() + "-details").append("<p>*Product description*</p>");
