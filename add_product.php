@@ -52,6 +52,20 @@ abstract class Product {
         
         $stmt->close();
     }
+
+    public function checkSKU($sku) {
+        $database = $this->databaseConnection->getDatabase();
+
+        $query = "SELECT * FROM products WHERE sku = ?";
+        $stmt = $database->prepare($query);
+        $stmt->bind_param("s", $sku);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $stmt->close();
+
+        return ($result->num_rows > 0) ? false : true;
+    }
 }
 
 class DvdProduct extends Product {
@@ -112,14 +126,20 @@ try {
 
     $productClass = $typeToClassMap[$type];
     $product = new $productClass();
-    $product->addProduct(
-        $_POST["sku"],
-        $_POST["name"],
-        $_POST["price"],
-        $product->getProductDetails($_POST)
-    );
+    if($product->checkSKU($_POST["sku"])) {
+        $product->addProduct(
+            $_POST["sku"],
+            $_POST["name"],
+            $_POST["price"],
+            $product->getProductDetails($_POST)
+        );
+    
+        header("Location: home.php");
+    } else {
+        header("Location: register_product.php");
+    }
 
-    header("Location: home.php");
+    
 } catch(Exception $e) {
     echo $e->getMessage();
 }

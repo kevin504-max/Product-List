@@ -10,6 +10,14 @@ html, body, #root {
     height: 100%;
 }
 
+.container {
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    flex-wrap: wrap; 
+}
+
 .products-container {
     padding: 2em;
     margin-top: 2em;
@@ -67,4 +75,82 @@ html, body, #root {
 .copy-right span {
     font-weight: bold;
     color: #FFBB33;
+}
+
+.product-card {
+    padding: 1em;
+    border: 1px solid #7A7A7A;
+    border-radius: 5px;
+    width: 24%;
+    margin: 0.5%;
+}
+
+.product-card h4 {
+    background-color: #222;
+    color: #FFBB33;
+    padding: 0.4em;
+    margin-bottom: 1.3em;
+}
+
+.product-card p {
+    color: #7A7A7A;
+    margin-bottom: 1em;
+}
+
+.product-card p span {
+    font-weight: bold;
+}
+
+.type-text {
+    display: flex;
+    align-items: center;
+}
+
+.type-text span {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #CCC;
+    margin-right: 5px;
+}
+
+.type-text .dvd {
+    background-color: #FFAEBC;
+}
+
+.type-text .book {
+    background-color: #A0E7E5;
+}
+
+.type-text .furniture {
+    background-color: #B4F8C8;
+}
+
+input.delete-checkbox {
+    position: relative;
+    margin-top: 0.2em;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+
+input.delete-checkbox:before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    border: 2px solid #CCC;
+    background-color: #FFF;
+    margin-right: 5px;
+}
+
+input.delete-checkbox:checked:before {
+    content: "\2713";
+    background-color: #FFBB33;
+    border-color: #FFBB33;
+    font-size: 12px;
+    text-align: center;
+    line-height: 12px;
+    font-weight: bold;
 }
