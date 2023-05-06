@@ -16,7 +16,7 @@
         <div class="title-container">
             <h1>Product List</h1>
             <div class="actions">
-                <a href="register_product.php" type="button" class="btn">Register a new Product</a>
+                <a href="register_product.php" type="button" class="btn">Add</a>
                 <a href="delete_product.php" type="button" class="btn">Mass Delete</a>
             </div>
         </div>

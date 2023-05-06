@@ -16,7 +16,7 @@
             <li><ion-icon name="logo-instagram"></ion-icon></li>
             <li><ion-icon name="logo-linkedin"></ion-icon></li>
         </ul>
-        <p class="copy-right"><span>Our Proct List</span> &copy; 2023</p>
+        <p class="copy-right"><span>Our Product List</span> &copy; 2023</p>
     </footer>
 </body>
 </html>

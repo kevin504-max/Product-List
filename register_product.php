@@ -20,7 +20,7 @@
     <div class="new-product-container">
         <h1>Add Product</h1>
         <p>Register your product</p>   
-        <form id="formRegisterProduct" action="/" class="form">
+        <form id="formRegisterProduct" class="form" action="add_product.php" method="POST">
             <div class="form-control">
                 <label for="sku">SKU</label>
                 <input type="text" name="sku" id="sku" placeholder="Enter with the product name">
@@ -36,7 +36,7 @@
             <div class="form-control">
                 <label for="type">Type Switcher</label>
                 <select name="type" id="type">
-                    <option>Select an option</option>
+                    <option value="">Select an option</option>
                     <option value="DVD">DVD</option>
                     <option value="Furniture">Furniture</option>
                     <option value="Book">Book</option>
@@ -44,19 +44,19 @@
             </div>
             <div id="dvd-details" class="form-control product-details" style="display: none;">
                 <label for="size">Size (MB)</label>
-                <input type="number" name="size" id="size" placeholder="Enter with the size">
+                <input type="number" name="size" id="size" placeholder="Please, provide size">
             </div>
             <div id="furniture-details" class="form-control product-details" style="display: none;">
                 <label for="height">Height (CM)</label>
-                <input type="number" name="height" id="height" placeholder="Enter with the height">
+                <input type="number" name="height" id="height" placeholder="Please, provide height"><br>
                 <label for="width">Width (CM)</label>
-                <input type="number" name="width" id="width" placeholder="Enter with the width">
+                <input type="number" name="width" id="width" placeholder="Please, provide width"><br>
                 <label for="length">Length (CM)</label>
-                <input type="number" name="length" id="length" placeholder="Enter with the length">
+                <input type="number" name="length" id="length" placeholder="Please, provide length"><br>
             </div>
             <div id="book-details" class="form-control product-details" style="display: none;">
                 <label for="weight">Weight (KG)</label>
-                <input type="number" name="weight" id="weight" placeholder="Enter with the weight">
+                <input type="number" name="weight" id="weight" placeholder="Please, provide weight">
             </div>
             <div class="actions">
                 <a href="home.php" type="button" class="btn-cancel">Cancel</a>
@@ -71,16 +71,25 @@
         $(document).ready(function () {
             $("#type").on("change", function (event) {
                 $(".product-details").css("display", "none");
+                $(".product-details").find("p").remove();
                 $("#" + event.target.value.toLowerCase() + "-details").css("display", "");
                 $("#" + event.target.value.toLowerCase() + "-details").append("<p>*Product description*</p>");
 
             });
 
-            $("#formRegisterProduct").on("submit", function () {
+            $("#formRegisterProduct").on("submit", function (event) {
                 event.preventDefault();
+
                 $(".form-control input, .form-control select").each(function () {
-                    validation($(this));
+                    if($(this).parent().css("display") != "none") {
+                        validation($(this));
+                    }
                 });
+
+                if($(".form-control input, .form-control select").val() != "" && $("#type").val() != "") {
+                    $(this).unbind("submit").submit();
+                }
+
             });
         });
 
@@ -92,6 +101,16 @@
                 field.css("border", "1px solid #222");
             }
         }
+
+        // function detailsJson(details) {
+        //     var details_json = {};
+
+        //     details.find("input, select").each(function () {
+        //         details_json[$(this).attr("name")] = $(this).val();
+        //     });
+
+        //     return JSON.stringify(details_json);
+        // }
     </script>
 </body>
 </html>
