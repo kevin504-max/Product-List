@@ -2,6 +2,7 @@
     width: 450px;
     margin: 0 auto;
     padding: 3em;
+    min-height: 100%;
 }
 
 .new-product-container h1 {

@@ -11,13 +11,12 @@
     <script src="import/jquery-3.6.4.min.js"></script>
     <script src="import/toastr.min.js"></script>
     <link rel="stylesheet" href="import/toastr.min.css">
-
 </head>
 <body>
     <?php
         include_once "layout/header.php";
     ?>
-    <div class="new-product-container">
+    <div class="new-product-container" style="min-height: 100%;">
         <h1>Add Product</h1>
         <p>Register your product</p>   
         <form id="formRegisterProduct" class="form" action="methods/add_product.php" method="POST">
@@ -35,7 +34,7 @@
             </div>
             <div class="form-control">
                 <label for="type">Type Switcher</label>
-                <select name="type" id="type">
+                <select name="type" id="productType">
                     <option value="">Select an option</option>
                     <option value="DVD">DVD</option>
                     <option value="Furniture">Furniture</option>
@@ -69,7 +68,7 @@
     ?>
     <script>
         $(document).ready(function () {
-            $("#type").on("change", function (event) {
+            $("#productType").on("change", function (event) {
                 $(".product-details").css("display", "none");
                 $(".product-details").find("input").val("");
                 $(".product-details").find("p").remove();
