@@ -3,7 +3,9 @@
     color:#FFF;
     padding: 3em;
     text-align: center;
+    top: auto;
     width: 100%;
+    height: 10em;
 }
 
 .social-list {

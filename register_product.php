@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="assets/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register a new product</title>
@@ -15,7 +15,7 @@
 </head>
 <body>
     <?php
-        include_once "header.php";
+        include_once "layout/header.php";
     ?>
     <div class="new-product-container">
         <h1>Add Product</h1>
@@ -65,7 +65,7 @@
         </form>
     </div>
     <?php
-        include_once "footer.php";
+        include_once "layout/footer.php";
     ?>
     <script>
         $(document).ready(function () {
@@ -74,32 +74,31 @@
                 $(".product-details").find("p").remove();
                 $("#" + event.target.value.toLowerCase() + "-details").css("display", "");
                 $("#" + event.target.value.toLowerCase() + "-details").append("<p>*Product description*</p>");
-
             });
 
             $("#formRegisterProduct").on("submit", function (event) {
                 event.preventDefault();
 
-                $(".form-control input, .form-control select").each(function () {
-                    if($(this).parent().css("display") != "none") {
-                        validation($(this));
-                    }
-                });
-
-                if($(".form-control input, .form-control select").val() != "" && $("#type").val() != "") {
+                if(validation($(".form-control input, .form-control select"))) {
                     $(this).unbind("submit").submit();
                 }
 
             });
         });
 
-        function validation(field) {
-            if(field.val() == "") {
-                toastr.warning(field.attr("name").charAt(0).toUpperCase() + field.attr("name").slice(1) + " is required!");
-                field.css("border", "1px solid red");
-            } else {
-                field.css("border", "1px solid #222");
-            }
+        function validation(fields) {
+            var validation = true;
+            fields.each(function () {
+                if($(this).parent().css("display") != "none" && $(this).val() == "") {
+                    toastr.warning($(this).attr("name").charAt(0).toUpperCase() + $(this).attr("name").slice(1) + " is required!");
+                    $(this).css("border", "1px solid red");
+                    validation = false;
+                } else {
+                    $(this).css("border", "1px solid #222");
+                }
+            });
+
+            return validation;
         }
     </script>
 </body>

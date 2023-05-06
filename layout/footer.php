@@ -9,7 +9,6 @@
 <body>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
     <footer class="footer">
         <ul class="social-list">
             <li><ion-icon name="logo-facebook"></ion-icon></li>
