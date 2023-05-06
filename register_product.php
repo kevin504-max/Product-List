@@ -101,16 +101,6 @@
                 field.css("border", "1px solid #222");
             }
         }
-
-        // function detailsJson(details) {
-        //     var details_json = {};
-
-        //     details.find("input, select").each(function () {
-        //         details_json[$(this).attr("name")] = $(this).val();
-        //     });
-
-        //     return JSON.stringify(details_json);
-        // }
     </script>
 </body>
 </html>

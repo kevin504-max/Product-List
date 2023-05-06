@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
     <link rel="stylesheet" href="css/app.css">
+    <script src="import/jquery-3.6.4.min.js"></script>
 </head>
 <body>
     <?php
@@ -17,35 +18,51 @@
             <h1>Product List</h1>
             <div class="actions">
                 <a href="register_product.php" type="button" class="btn">Add</a>
-                <a href="delete_product.php" type="button" class="btn">Mass Delete</a>
+                <a id="btn_delete" type="button" class="btn">Mass Delete</a>
             </div>
         </div>
-        <div class="container" style="justify-content: flex-start;">
-            <?php
-                include_once "products.php";
-                $productsObj = new App\Products();
-                $products = $productsObj->getProducts();
+        <form id="formDeleteProducts" action="delete_products.php" method="POST">
+            <input type="hidden" name="products_ids[]" id="products_ids">
+            <div class="container" style="justify-content: flex-start;">
+                <?php
+                    include_once "products.php";
+                    $productsObj = new App\Products();
+                    $products = $productsObj->getProducts();
 
-                if (count($products) > 0) {
-                    foreach ($products as $product) {
-                        echo "<div class='product-card'>";
-                        echo "<input type='checkbox' class='delete-checkbox' value='" . $product["id"] . "'/>"; 
-                        echo "<h4>" . $product["name"] . "</h4>";
-                        echo "<p><span>SKU: </span>" . $product["sku"] . "</p>";
-                        echo "<p><span>Price: </span>" . $product["price"] . "</p>";
-                        echo "<p class='type-text'><span class='" . strtolower($product["type"]) . "'></span>" . $product["type"] . "</p>";
-                        echo "<p class='details-text'><span>Details: </span>" . $product["details"] . "</p>";
-                        echo "</div>";
-
+                    if ($products && count($products) > 0) {
+                        foreach ($products as $product) {
+                            echo "<div class='product-card'>";
+                            echo "<input type='checkbox' class='delete-checkbox' value='" . $product["id"] . "'/>"; 
+                            echo "<h4>" . $product["name"] . "</h4>";
+                            echo "<p><span>SKU: </span>" . $product["sku"] . "</p>";
+                            echo "<p><span>Price: </span>" . $product["price"] . "</p>";
+                            echo "<p class='type-text'><span class='" . strtolower($product["type"]) . "'></span>" . $product["type"] . "</p>";
+                            echo "<p class='details-text'><span>Details: </span>" . $product["details"] . "</p>";
+                            echo "</div>";
+                        }
+                    } else {
+                        echo "<h2>No products found</h2>";
                     }
-                } else {
-                    echo "<h2>No products found</h2>";
-                }
-            ?>
-        </div>
+                ?>
+            </div>
+        </form>
     </div>
     <?php
         include_once "footer.php";
     ?>
+    <script>
+        $(document).ready(function() {
+            $("#btn_delete").on("click", function() {
+                if ($(".delete-checkbox:checked").length > 0) {
+                    $("#formDeleteProducts").find('input[name="products_ids[]"]').val($(".delete-checkbox:checked").map(function () {
+                        return this.value;
+                    }).get().join(","));
+                    $("#formDeleteProducts").unbind("submit").submit();
+                } else {
+                    $(".btn[type='submit']").css("display", "none");
+                }
+            });
+        });
+    </script>
 </body>
 </html>

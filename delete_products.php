@@ -1,6 +1,4 @@
-<?php
-namespace App;
-
+<?php 
 use Exception;
 use mysqli;
 
@@ -24,29 +22,35 @@ class DatabaseConnection {
     }
 }
 
-class Products {
+class ProductsToDelete {
     protected $databaseConnection;
 
     public function __construct() {
         $this->databaseConnection = new DatabaseConnection();
     }
 
-    public function getProducts() {
+    public function massDelete($ids) {
         $database = $this->databaseConnection->getDatabase();
-        $query = "SELECT * FROM products ORDER BY id DESC";
+        $idList = implode("','", array_map([$database, 'real_escape_string'], $ids));
+        $query = "DELETE FROM products WHERE id IN ($idList)";
         $result = $database->query($query);
-        $products = [];
 
-        if($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                $products[] = $row;
-            }
-        } else {
-            return false;
-        }
+        header ("Location: home.php");
 
-        return $products;
+        return true;
     }
+}
+
+try {
+    $products = new ProductsToDelete();
+
+    if(isset($_POST["products_ids"]) && !empty($_POST["products_ids"])) {
+        $products->massDelete($_POST["products_ids"]);
+    }
+
+    header("Location: home.php");
+} catch (Exception $e) {
+    echo $e->getMessage();
 }
 
 ?>
