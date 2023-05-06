@@ -157,3 +157,18 @@ input.delete-checkbox:checked:before {
     line-height: 12px;
     font-weight: bold;
 }
+
+.not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    margin-left: 2em;
+}
+
+.not-found h2 {
+    color: #222;
+    font-size: 2em;
+    padding: 1em;
+    padding-top: 8em;
+}

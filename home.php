@@ -41,7 +41,10 @@
                             echo "</div>";
                         }
                     } else {
-                        echo "<h2>No products found</h2>";
+                        echo "<div class='not-found'>";
+                        echo "<img src='assets/Meerkats.svg' alt='There are no products registered yet.' width='400'>";
+                        echo "<h2>There are no products registered yet.</h2>";
+                        echo "</div>";
                     }
                 ?>
             </div>
