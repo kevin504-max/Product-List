@@ -35,7 +35,7 @@ class ProductsToDelete {
         $query = "DELETE FROM products WHERE id IN ($idList)";
         $result = $database->query($query);
 
-        header ("Location: ../home.php");
+        header ("Location: ../index.php");
 
         return true;
     }
@@ -48,7 +48,7 @@ try {
         $products->massDelete($_POST["products_ids"]);
     }
 
-    header("Location: ../home.php");
+    header("Location: ../index.php");
 } catch (Exception $e) {
     echo $e->getMessage();
 }

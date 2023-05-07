@@ -55,17 +55,23 @@ abstract class Product {
 
     public function checkSKU($sku) {
         $database = $this->databaseConnection->getDatabase();
-
+    
         $query = "SELECT * FROM products WHERE sku = ?";
         $stmt = $database->prepare($query);
+    
+        if(!$stmt) {
+            throw new Exception("Error preparing query: " . $database->error);
+        }
+    
         $stmt->bind_param("s", $sku);
         $stmt->execute();
         $result = $stmt->get_result();
-
+    
         $stmt->close();
-
+    
         return ($result->num_rows > 0) ? false : true;
     }
+
 }
 
 class DvdProduct extends Product {
@@ -134,7 +140,7 @@ try {
             $product->getProductDetails($_POST)
         );
     
-        header("Location: ../home.php");
+        header("Location: ../index.php");
     } else {
         header("Location: ../register_product.php");
     }

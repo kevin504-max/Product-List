@@ -18,7 +18,7 @@
             <h1>Product List</h1>
             <div class="actions">
                 <a href="register_product.php" type="button" class="btn">Add</a>
-                <a id="btn_delete" type="button" class="btn">Mass Delete</a>
+                <a id="delete-checkbox" type="button" class="btn">Mass Delete</a>
             </div>
         </div>
         <form id="formDeleteProducts" action="methods/delete_products.php" method="POST">
@@ -55,7 +55,7 @@
     ?>
     <script>
         $(document).ready(function() {
-            $("#btn_delete").on("click", function() {
+            $("#delete-checkbox").on("click", function() {
                 if ($(".delete-checkbox:checked").length > 0) {
                     $("#formDeleteProducts").find('input[name="products_ids[]"]').val($(".delete-checkbox:checked").map(function () {
                         return this.value;

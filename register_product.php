@@ -19,7 +19,7 @@
     <div class="new-product-container" style="min-height: 100%;">
         <h1>Add Product</h1>
         <p>Register your product</p>   
-        <form id="formRegisterProduct" class="form" action="methods/add_product.php" method="POST">
+        <form id="product_form" class="form" action="methods/add_product.php" method="POST">
             <div class="form-control">
                 <label for="sku">SKU</label>
                 <input type="text" name="sku" id="sku" placeholder="Enter with the product name">
@@ -58,8 +58,8 @@
                 <input type="number" name="weight" id="weight" placeholder="Please, provide weight">
             </div>
             <div class="actions">
-                <a href="home.php" type="button" class="btn-cancel">Cancel</a>
-                <button class="btn-submit" type="submit">Add Product</button>
+                <a href="index.php" type="button" class="btn-cancel">Cancel</a>
+                <button class="btn-submit" type="submit">Save</button>
             </div>
         </form>
     </div>
@@ -76,7 +76,7 @@
                 $("#" + event.target.value.toLowerCase() + "-details").append("<p>*Product description*</p>");
             });
 
-            $("#formRegisterProduct").on("submit", function (event) {
+            $("#product_form").on("submit", function (event) {
                 event.preventDefault();
 
                 if(validation($(".form-control input, .form-control select"))) {
