@@ -10,7 +10,7 @@
     <header>
         <nav class="navbar">
             <h1><a href="index.php"><img src="img/logo.png" alt="Logo"></a></h1>
-            <h1 class="welcome">Welcome to our <span>product list!</span></h1>
+            <h1 class="welcome">Welcome to <span>Kevin's products list!</span></h1>
         </nav>
     </header>    
 </body>
